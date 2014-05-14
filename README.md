@@ -1,9 +1,9 @@
-# Android PagerSlidingTabStrip
+# Android SlidingTabStrip
 
-Interactive paging indicator widget, compatible with the `ViewPager` from the 
-Android Support Library. 
+[Forked from PagerSlidingTabStrip by Andreas Stütz](https://play.google.com/store/apps/details?id=com.astuetz.viewpager.extensions.sample).
 
-Try out the sample application [on the Play Store](https://play.google.com/store/apps/details?id=com.astuetz.viewpager.extensions.sample).
+This fork provides a View tu mimic a Tab widget.
+The result is similar to Andreas's library.
 
 ![PagerSlidingTabStrip Sample Screenshot 1](https://lh3.ggpht.com/PXS7EmHhQZdT1Oa379iy91HX3ByWAQnFZAthMAFa_QHAOHNClEaXU5nxDEAj1F2eqbk)![PagerSlidingTabStrip Sample Screenshot 2](https://lh3.ggpht.com/oaksDoUcQlGB4j7VEkBCOjrvSzjtzVHHcKq8pAnGVfm6oxkcJg_w1QS4tyP3fLcqrwcX)
 
@@ -12,68 +12,86 @@ Try out the sample application [on the Play Store](https://play.google.com/store
 *For a working implementation of this project see the `sample/` folder.*
 
   1. Include the library as local library project or add the dependency in your build.gradle.
-        
+
         dependencies {
-            compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+            // TODO
+            compile ''
         }
 
-  2. Include the PagerSlidingTabStrip widget in your layout. This should usually be placed
-     above the `ViewPager` it represents.
+  2. Include the SlidingTabStrip widget in your layout.
 
-        <com.astuetz.PagerSlidingTabStrip
+        <fr.jdn.SlidingTabStrip
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="48dip" />
 
-  3. In your `onCreate` method (or `onCreateView` for a fragment), bind the
-     widget to the `ViewPager`.
+  3. In your `onCreate` method (or `onViewCreated` for a fragment), set a OnTabClickListener.
 
-         // Initialize the ViewPager and set an adapter
-         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-         pager.setAdapter(new TestAdapter(getSupportFragmentManager()));
-         
-         // Bind the tabs to the ViewPager
-         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-         tabs.setViewPager(pager);
+         SlidingTabStrip tabs = (SlidingTabStrip) findViewById(R.id.tabs);
+         tabs.setOnTabClickListener( new OnTabClickListener(){
+            public void onTabClicked( int position )
+            {
+                // Do something
+                Toast.makeText( context, "click " + position, Toast.LENGTH_SHORT).show();
+            }
+         });
 
-  4. *(Optional)* If you use an `OnPageChangeListener` with your view pager
-     you should set it in the widget rather than on the pager directly.
+  4. Populate the SlidingTabStrip.
 
          // continued from above
-         tabs.setOnPageChangeListener(mPageChangeListener);
+         tabs.addTextTab("test1");
+         tabs.addTextTab("test2");
+         tabs.addTextTab("test3");
+         tabs.addTextTab("test4");
+         tabs.addIconTab(android.R.drawable.ic_menu_add);
+         tabs.addIconTab(android.R.drawable.ic_menu_call);
+         tabs.addTextTab("test5");
+         tabs.addTextTab("test6");
+         
+         tabs.clearTab();
 
 # Customization
 
 To not just look like another Play Store styled app, go and adjust these values to match
 your brand:
 
- * `pstsIndicatorColor` Color of the sliding indicator
- * `pstsUnderlineColor` Color of the full-width line on the bottom of the view
- * `pstsDividerColor` Color of the dividers between tabs
- * `pstsIndicatorHeight`Height of the sliding indicator
- * `pstsUnderlineHeight` Height of the full-width line on the bottom of the view
- * `pstsDividerPadding` Top and bottom padding of the dividers
- * `pstsTabPaddingLeftRight` Left and right padding of each tab
- * `pstsScrollOffset` Scroll offset of the selected tab
- * `pstsTabBackground` Background drawable of each tab, should be a StateListDrawable
- * `pstsShouldExpand` If set to true, each tab is given the same weight, default false
- * `pstsTextAllCaps` If true, all tab titles will be upper case, default true
+ * `stsIndicatorColor` Color of the sliding indicator
+ * `stsUnderlineColor` Color of the full-width line on the bottom of the view
+ * `stsDividerColor` Color of the dividers between tabs
+ * `stsIndicatorHeight`Height of the sliding indicator
+ * `stsUnderlineHeight` Height of the full-width line on the bottom of the view
+ * `stsDividerPadding` Top and bottom padding of the dividers
+ * `stsTabPaddingLeftRight` Left and right padding of each tab
+ * `stsScrollOffset` Scroll offset of the selected tab
+ * `stsTabBackground` Background drawable of each tab, should be a StateListDrawable
+ * `stsShouldExpand` If set to true, each tab is given the same weight, default false
+ * `stsTextAllCaps` If true, all tab titles will be upper case, default true
 
 *All attributes have their respective getters and setters to change them at runtime*
 
 # Changelog
 
-### Current Version: 1.0.1
+### Current Version: 1.0.2
 
+### [1.0.2](https://github.com/juliendn/SlidingTabStrip/tree/v1.0.2)
+
+ * Modify PagerSlidingTabStrip into SlidingTabStrip
+ * Update sample to match new widget
+ * Update for Graddle 0.9
+ * change path to match standard android-studio src path
+ * Fork from https://github.com/astuetz/PagerSlidingTabStrip
+ 
 ### [1.0.1](https://github.com/astuetz/PagerSlidingTabStrip/tree/v1.0.1)
+ 
+  * Upgraded gradle build files
+  * Changed package name to `com.astuetz.PagerSlidingTabStrip`
+  * [#37](https://github.com/astuetz/PagerSlidingTabStrip/pull/37), [#41](https://github.com/astuetz/PagerSlidingTabStrip/pull/41) Added `psts` prefix to all attributes in `attrs.xml`
+  * [#46](https://github.com/astuetz/PagerSlidingTabStrip/pull/46) Changed the shouldExpand behavior to set the layout at the time the tab is added
 
- * Upgraded gradle build files
- * Changed package name to `com.astuetz.PagerSlidingTabStrip`
- * [#37](https://github.com/astuetz/PagerSlidingTabStrip/pull/37), [#41](https://github.com/astuetz/PagerSlidingTabStrip/pull/41) Added `psts` prefix to all attributes in `attrs.xml`
- * [#46](https://github.com/astuetz/PagerSlidingTabStrip/pull/46) Changed the shouldExpand behavior to set the layout at the time the tab is added
 
 # Developed By
 
+ * Julien De Nadai - <julien.denadai@gmail.com>
  * Andreas Stuetz - <andreas.stuetz@gmail.com>
 
 
@@ -83,6 +101,16 @@ your brand:
 
 
 # License
+    
+    Copyright 2014 Julien De Nadai
+    ----------------------------------------------------------------------------
+    "THE BEER-WARE LICENSE" (Revision 42):
+    <phk@FreeBSD.ORG> wrote this file. As long as you retain this notice you
+    can do whatever you want with this stuff. If we meet some day, and you think
+    this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp
+    ----------------------------------------------------------------------------
+   
+![Beerware_logo](http://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/BeerWare_Logo.svg/220px-BeerWare_Logo.svg.png)
 
     Copyright 2013 Andreas Stuetz
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SlidingTabStrip">
+        <attr name="stsIndicatorColor" format="color" />
+        <attr name="stsUnderlineColor" format="color" />
+        <attr name="stsDividerColor" format="color" />
+        <attr name="stsIndicatorHeight" format="dimension" />
+        <attr name="stsUnderlineHeight" format="dimension" />
+        <attr name="stsDividerPadding" format="dimension" />
+        <attr name="stsTabPaddingLeftRight" format="dimension" />
+        <attr name="stsScrollOffset" format="dimension" />
+        <attr name="stsTabBackground" format="reference" />
+        <attr name="stsShouldExpand" format="boolean" />
+        <attr name="stsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+</resources>

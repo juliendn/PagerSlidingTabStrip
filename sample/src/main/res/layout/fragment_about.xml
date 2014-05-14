@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+
+    <TextView
+        android:textStyle="bold"
+        android:text="Provided by"/>
+    <TableRow
+        android:id="@+id/people_jdn">
+
+        <com.makeramen.RoundedImageView
+            android:id="@+id/portrait_jdn"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:src="@drawable/jdenadai"
+            app:border_color="@color/border"
+            app:border_width="2dip"
+            app:corner_radius="30dip"
+            app:mutate_background="true"
+            app:oval="true" />
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:text="Julien De Nadai" />
+
+        <ImageView
+            android:id="@+id/github_jdn"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/github" />
+    </TableRow>
+
+    <TextView
+        android:textStyle="bold"
+        android:text="Forked from PagerSlidingTabStrip"/>
+    <TableRow android:id="@+id/people_astutz">
+
+        <com.makeramen.RoundedImageView
+            android:id="@+id/portrait_astutz"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:src="@drawable/astutz"
+            app:border_color="@color/border"
+            app:border_width="2dip"
+            app:corner_radius="30dip"
+            app:mutate_background="true"
+            app:oval="true" />
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:text="Andreas Stütz" />
+
+        <ImageView
+            android:id="@+id/github_astutz"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/github" />
+    </TableRow>
+
+</TableLayout>
